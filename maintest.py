@@ -3,7 +3,7 @@ from keras.models import load_model
 from PIL import Image
 import numpy as np
 
-model = load_model("BrainTumor10Epochs.h5")
+model = load_model("BrainTumor10EpochsCategorycal.h5")
 
 image_path = "C:\\Users\\sp696\\OneDrive\\Desktop\\minor\\pred\\pred2.jpg"
 

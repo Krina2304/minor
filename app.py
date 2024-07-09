@@ -8,7 +8,7 @@ from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-model = load_model("BrainTumor10Epochs.h5")
+model = load_model("BrainTumor10EpochsCategorycal.h5")
 print('Model loaded. Check http://127.0.0.1:5000/')
 
 
@@ -27,10 +27,17 @@ def getResult(img):
     image = np.array(image)
     image = image / 255.0  # Normalize image
     input_img = np.expand_dims(image, axis=0)
+    
+    # Print debug information
+    print("Input shape:", input_img.shape)
+    
     result = model.predict(input_img)
+    print("Raw probabilities:", result)
+    
     class_idx = np.argmax(result, axis=1)[0]
     className = get_className(class_idx)
     return className
+
 
 
 @app.route('/', methods=['GET'])
